@@ -1,0 +1,105 @@
+/* ===== Fondo global ===== */
+body {
+  background: url("../img/hero1.jpg") center center / cover no-repeat fixed;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Capa oscura fija (elemento real, no pseudo) */
+#globalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55); /* opacidad estable */
+  z-index: 0;                  /* detrás de todo el contenido */
+  pointer-events: none;        /* no bloquea clics ni modal */
+}
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  position: relative;
+  background-image: url("../img/hero1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 1; /* por encima del overlay */
+}
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.hero .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Contacto ===== */
+#contacto {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #fff;
+  z-index: 2;
+}
+#contacto .form-control {
+  background-color: rgba(255,255,255,0.9);
+  border: none;
+}
+#contacto .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.4);
+}
+#contacto button.btn-primary {
+  font-weight: 600;
+  border: none;
+}
+#contacto button.btn-primary:hover {
+  background-color: #e6e6e6;
+}
+
+/* ===== Variantes de fondo del formulario ===== */
+.contact-gradient1 { background: linear-gradient(135deg,#00c6ff,#7b2ff7); }
+.contact-gradient2 { background: linear-gradient(135deg,#f7971e,#ff5858); }
+.contact-gradient3 { background: linear-gradient(135deg,#43cea2,#185a9d); }
+.contact-solid     { background: #0d6efd; }
+.contact-dark      { background: #222; }
+
+/* ===== Transparente ===== */
+.contact-transparent {
+  background: none !important;
+  color: #fff;
+  border: none;
+}
+.contact-transparent .container {
+  max-width: 600px;
+  background: rgba(0,0,0,0.4);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+/* Animación de aparición */
+#contacto.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+#contacto.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* ======== Corregir colores en el modal ======== */
+.modal-content,
+.modal-content .form-label,
+.modal-content .modal-title {
+  color: #212529;           /* texto oscuro estándar de Bootstrap */
+}
+
+.modal-content {
+  background-color: #fff;   /* fondo blanco para mayor contraste */
+}

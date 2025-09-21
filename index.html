@@ -1,26 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Mi proyecto</title>
-
+  <title>SuperaLaRed</title>
+  <link rel="icon" href="img/LOGO SUPERALARED.jpeg" type="image/x-icon">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- Tu CSS opcional -->
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-  <div class="container py-5">
-    <h1 class="text-center">LONGA </h1>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="img/LOGO SUPERALARED.jpeg" alt="SuperaLaRed" height="80" class="me-2 mx-4 rounded">
+        <span class="fw-bold">SuperaLaRed</span>
+      </a>
+
+      <!-- Botón responsive -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Enlaces -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item mx-2"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="tel:+34642521446">📞 +34 642 521 446</a></li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="https://instagram.com/superalared" target="_blank">
+              <i class="bi bi-instagram"></i> Instagram
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="https://facebook.com/superalared" target="_blank">
+              <i class="bi bi-facebook"></i> Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Botón para abrir el modal -->
+      <div class="text-end p-3">
+        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#customizerModal">
+          Personalizar página
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO / IMAGEN DE PISTA DE PÁDEL ===== -->
+  <section class="hero d-flex align-items-center justify-content-center text-white text-center">
+
+    <div class="overlay"></div>
+
+    <div class="container position-relative z-1">
+      <!-- Texto principal -->
+      <h1 class="display-4 fw-bold mb-4">"Más allá de la red está tu mejor versión"</h1>
+      <p class="lead mb-5">Clases de pádel en tu urbanización, sin desplazamientos.</p>
+
+      <!-- ===== FORMULARIO DE CONTACTO ===== -->
+      <section id="contacto" class="contact-transparent">
+        <div class="container">
+          <h2 class="text-center mb-4">Contáctanos</h2>
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <form>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="mensaje" class="form-label">Mensaje</label>
+                  <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== FIN FORMULARIO ===== -->
+
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="customizerModal" tabindex="-1" aria-labelledby="customizerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="customizerLabel">Personalización</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="customizerForm" class="row g-3">
+            <!-- Texto -->
+            <div class="col-md-6">
+              <label for="textColor" class="form-label">Color del texto</label>
+              <input type="color" id="textColor" class="form-control form-control-color">
+            </div>
+
+            <div class="col-md-6">
+              <label for="fontSizeH1" class="form-label">Tamaño H1 (px)</label>
+              <input type="number" id="fontSizeH1" class="form-control" min="10" max="100">
+            </div>
+
+            <div class="col-md-6">
+              <label for="fontSizeP" class="form-label">Tamaño Párrafo (px)</label>
+              <input type="number" id="fontSizeP" class="form-control" min="8" max="48">
+            </div>
+
+            <!-- Fondo hero -->
+            <div class="col-12">
+              <label for="heroBackground" class="form-label">Fondo de la sección Hero</label>
+              <select id="heroBackground" class="form-select">
+                <option value="1">Fondo 1</option>
+                <option value="2">Fondo 2</option>
+                <option value="3">Fondo 3</option>
+                <option value="4">Fondo 4</option>
+                <option value="5">Fondo 5</option>
+                <option value="6">Fondo 6</option>
+                <option value="7">Fondo 7</option>
+
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label for="heroUpload" class="form-label">Subir imagen de fondo</label>
+              <input type="file" id="heroUpload" class="form-control" accept="image/*">
+            </div>
+
+            <!-- Cursor -->
+            <div class="col-12">
+              <label for="cursorSelect" class="form-label">Cursor</label>
+              <select id="cursorSelect" class="form-select">
+                <option value="default">Por defecto</option>
+                <option value="0">Pala 0</option>
+                <option value="1">Pala 1</option>
+                <option value="2">Pala 2</option>
+                <option value="3">Pala 3</option>
+              </select>
+            </div>
+
+            <!-- Fondo formulario contacto -->
+            <div class="col-12">
+              <label for="contactBg" class="form-label">Fondo del formulario</label>
+              <select id="contactBg" class="form-select ">
+                <option value="gradient1">Degradado azul–morado</option>
+                <option value="gradient2">Degradado naranja–rosa</option>
+                <option value="gradient3">Degradado verde–azul</option>
+                <option value="solid">Color sólido azul</option>
+                <option value="dark">Oscuro</option>
+                <option value="transparent">Transparente</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" id="applyChanges" class="btn btn-primary">Aplicar cambios</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- jQuery primero, después Bootstrap JS -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <!-- Tu JS -->
-  <script src="js/main.js"></script>
+
+  <!-- ===== SCRIPTS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/customizer.js"></script>
+<script src="js/main.js"></script>
+
+
 </body>
+
 </html>
