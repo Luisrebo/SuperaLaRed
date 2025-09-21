@@ -19,7 +19,7 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  height: 100vh;
+   min-height: 100vh;
   position: relative;
   background-image: url("../img/hero1.jpg");
   background-size: cover;
@@ -102,4 +102,10 @@ body {
 
 .modal-content {
   background-color: #fff;   /* fondo blanco para mayor contraste */
+}
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;   
+    padding-top: 13rem;  
+  }
 }
