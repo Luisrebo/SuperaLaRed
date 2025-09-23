@@ -109,3 +109,86 @@ body {
     padding-top: 13rem;  
   }
 }
+/* Ajustes para pantallas entre 768px y 1200px */
+@media (max-width: 1200px) and (min-width: 768px) {
+  .hero {
+    height: auto;          /* que crezca según el contenido */
+    padding-top: 8rem;      /* espacio extra bajo la navbar */
+    padding-bottom: 4rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;      /* antes era ~3–4rem */
+    line-height: 1.2;
+  }
+  .hero p.lead {
+    font-size: 1.2rem;
+  }
+}
+
+/* En móviles pequeños (<768px) más reducción si hace falta */
+@media (max-width: 767px) {
+  .hero {
+    height: auto;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  .hero p.lead {
+    font-size: 1rem;
+  }
+}
+/* Pantallas con altura reducida */
+@media (max-height: 750px) {
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  .hero p.lead {
+    font-size: 1.1rem;
+  }
+  #contacto {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+/* --- Ajuste extra para portátiles con poca altura visible --- */
+@media (max-height: 1011px) and (min-width: 768px) {
+  .hero {
+    min-height: auto;      /* permite que la altura crezca más de la ventana */
+    padding-top: 8rem;     /* margen superior para que no tape la navbar fija */
+    padding-bottom: 4rem;  /* un poco de aire abajo */
+  }
+}
+/* Asegura que html y body se expandan con el contenido */
+html,
+body {
+  min-height: 100%;
+}
+
+/* Overlay fijo para la parte visible */
+#globalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;       /* solo el viewport */
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pseudo-elemento para cubrir cualquier scroll extra */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+  pointer-events: none;
+}
