@@ -103,6 +103,26 @@ body {
 .modal-content {
   background-color: #fff;   /* fondo blanco para mayor contraste */
 }
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: #fff;
+  font-size: 2rem;
+  padding: 12px 14px;
+  border-radius: 50%;
+  z-index: 1000;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+.whatsapp-float:hover {
+  background: #1ebe5d;
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .hero {
     min-height: auto;   
@@ -191,4 +211,52 @@ body::before {
   background: rgba(0,0,0,0.55);
   z-index: 0;
   pointer-events: none;
+}
+/* ===== Ajustes extra para móviles / pantallas bajas ===== */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;       /* que crezca según el contenido */
+    height: auto;
+    padding-top: 10rem;      /* deja aire bajo la navbar fija */
+    padding-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;       /* texto más pequeño para que no se corte */
+    line-height: 1.2;
+    word-break: break-word;  /* por si hay palabras largas */
+  }
+
+  .hero p.lead {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+}
+
+/* Si la altura de la pantalla es muy pequeña (por ejemplo iPhone SE) */
+@media (max-height: 700px) {
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 545px) {
+  .hero {
+    height: auto;         /* que se adapte al contenido */
+    min-height: auto;
+    padding-top: 18rem;   /* ↑ mueve todo el contenido más abajo */
+    padding-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;    /* reduce tamaño para evitar cortes */
+    line-height: 1.2;
+  }
+
+  .hero p.lead {
+    font-size: 1rem;
+  }
 }
