@@ -67,15 +67,16 @@
       <p class="lead mb-5">Clases de pádel en tu urbanización, sin desplazamientos.</p>
 
       <!-- ===== FORMULARIO DE CONTACTO ===== -->
+<!-- ===== FORMULARIO DE CONTACTO ===== -->
 <section id="contacto" class="contact-transparent">
   <div class="container">
     <h2 class="text-center mb-4">Contáctanos</h2>
     <div class="row justify-content-center">
       <div class="col-lg-6">
-
-        <!-- Formulario -->
         <form id="contactForm" action="https://formspree.io/f/xrbygqdq" method="POST">
           <input type="hidden" name="_subject" value="Nuevo mensaje desde SuperaLaRed">
+          <!-- Campo honeypot anti-spam (opcional) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
@@ -93,16 +94,16 @@
           </div>
 
           <button type="submit" class="btn btn-primary w-100">Enviar</button>
+
+          <!-- Mensaje inline (éxito / error) -->
+          <div id="formMsg" class="alert d-none mt-3" role="alert" aria-live="polite"></div>
         </form>
-
-        <!-- Aquí aparecerá el mensaje de éxito o error -->
-        <div id="formMsg" class="alert mt-3 d-none"></div>
-
       </div>
     </div>
   </div>
 </section>
 <!-- ===== FIN FORMULARIO ===== -->
+
 
     </div>
   </section>
