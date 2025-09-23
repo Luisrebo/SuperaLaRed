@@ -21,7 +21,7 @@ body {
 .hero {
    min-height: 100vh;
   position: relative;
-  background-image: url("../img/hero1.jpg");
+  background-image: url("../img/hero7.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -106,22 +106,33 @@ body {
 
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  /* usa porcentaje del ancho y del alto de la ventana */
+  left: 90%;
+  top: 90%;
+  transform: translate(-50%, -50%); /* centra el botón respecto a su punto */
+  
+  width:  clamp(60px, 5vw, 110px);  /* más grande en pantallas grandes */
+  height: clamp(60px, 5vw, 110px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: #25D366;
   color: #fff;
-  font-size: 2rem;
-  padding: 12px 14px;
-  border-radius: 50%;
-  z-index: 1000;
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: background 0.3s;
+  z-index: 900;                   /* por encima del contenido pero debajo del modal */
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 .whatsapp-float:hover {
   background: #1ebe5d;
-  color: #fff;
+  transform: translate(-50%, -50%) scale(1.05);
 }
+.whatsapp-float i {
+  font-size: clamp(28px, 3vw, 48px); /* icono más grande en pantallas grandes */
+}
+
 
 @media (max-width: 768px) {
   .hero {
