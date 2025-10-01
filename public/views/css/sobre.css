@@ -1,0 +1,212 @@
+/* =========================
+   Variables & Base
+========================= */
+:root{
+  --neon:#33b3ff;         /* azul eléctrico */
+  --neon-soft:#66c8ff;    /* brillo suave */
+  --bg-overlay: rgba(0,0,0,0.55);
+  --text:#eaf6ff;
+  --title:#ffffff;
+}
+
+/* Evita que el título “suba” bajo la navbar fija */
+.sobre-hero{
+  /* fondo con pista azul y pelotas; ajusta la ruta/imagen que uses */
+  background:
+    linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+    url("../../img/hero6.jpg") center/cover no-repeat fixed;
+
+  /* separaciones fluidas en función del viewport */
+  padding-top: clamp(7rem, 12vh, 12rem);  /* despega del navbar */
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+  min-height: 100vh;
+
+  color: var(--text);
+  position: relative;
+}
+
+/* Título con glow */
+.neon-title{
+  color: var(--title);
+  text-shadow:
+    0 0 10px var(--neon),
+    0 0 20px var(--neon),
+    0 0 40px var(--neon-soft);
+  letter-spacing: .5px;
+  margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  animation: neonPulse 3.5s ease-in-out infinite;
+}
+
+/* =========================
+   Tarjetas estilo neón
+========================= */
+.neon-card{
+  position: relative;
+  background: rgba(10, 16, 26, 0.45);   /* panel translúcido */
+  border-radius: 16px;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  color: var(--text);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* borde con brillo */
+  border: 1px solid rgba(102, 200, 255, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(102, 200, 255, 0.15) inset,
+    0 0 24px rgba(51, 179, 255, 0.25);
+
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+/* “Arista” neón con gradiente */
+.neon-card::before{
+  content:"";
+  position:absolute;
+  inset:-1px; /* fuera 1px para que el glow “salga” */
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(120px 120px at 10% 10%, rgba(51,179,255,.35), transparent 60%),
+    radial-gradient(160px 160px at 90% 20%, rgba(102,200,255,.25), transparent 65%),
+    radial-gradient(140px 140px at 50% 100%, rgba(51,179,255,.2), transparent 65%);
+  mix-blend-mode: screen;
+  opacity:.85;
+  transition: opacity .35s ease;
+}
+
+.neon-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(102, 200, 255, 0.65);
+  box-shadow:
+    0 0 0 1px rgba(102, 200, 255, 0.35) inset,
+    0 10px 40px rgba(51, 179, 255, 0.45);
+}
+.neon-card:hover::before{
+  opacity: 1;
+}
+
+/* Titulares y texto dentro de la tarjeta */
+.neon-card__title{
+  margin-bottom: .75rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow:
+    0 0 6px rgba(51,179,255,.6),
+    0 0 16px rgba(51,179,255,.35);
+}
+.neon-card__text{
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* =========================
+   Layout tweaks
+========================= */
+.container{
+  /* espacio lateral fluido */
+  padding-left: clamp(12px, 4vw, 48px) !important;
+  padding-right: clamp(12px, 4vw, 48px) !important;
+}
+
+/* mejorar separación entre columnas en todos los tamaños */
+.row.g-4{
+  row-gap: clamp(1rem, 3vh, 2rem);
+}
+
+/* =========================
+   Animaciones
+========================= */
+@keyframes neonPulse{
+  0%,100%{
+    text-shadow:
+      0 0 10px var(--neon),
+      0 0 20px var(--neon),
+      0 0 40px var(--neon-soft);
+  }
+  50%{
+    text-shadow:
+      0 0 6px var(--neon),
+      0 0 14px var(--neon),
+      0 0 28px var(--neon-soft);
+  }
+}
+
+/* =========================
+   Responsive finos
+========================= */
+@media (max-width: 992px){
+  .neon-title{
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+  }
+}
+@media (max-width: 576px){
+  .neon-card{
+    padding: 1rem 1rem 1.1rem;
+  }
+}
+
+/* =========================
+   Logo circular en navbar (opcional)
+========================= */
+.navbar .navbar-brand img{
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.6);
+  box-shadow: 0 0 12px rgba(51,179,255,.4);
+}
+/* ===== Altura "real" de la navbar según el viewport ===== */
+:root{
+  --nav-h: 80px;                /* desktop por defecto */
+}
+@media (max-width: 991.98px){   /* tablets */
+  :root{ --nav-h: 72px; }
+}
+@media (max-width: 575.98px){   /* móviles comunes */
+  :root{ --nav-h: 64px; }
+}
+@media (max-width: 359.98px){   /* móviles muy pequeños */
+  :root{ --nav-h: 56px; }
+}
+
+/* 1) Compensa el scroll a anclas (por si llegas desde el menú) */
+html{
+  scroll-padding-top: calc(var(--nav-h) + 8px);
+}
+
+/* 2) Empuja TODO el contenido por debajo de la navbar fija (solo en esta página) */
+body{
+  padding-top: var(--nav-h);
+}
+
+/* 3) Ya no necesitamos un gran padding-top aquí: mantenlo suave */
+.sobre-hero{
+  padding-top: clamp(1rem, 2vh, 2rem);   /* solo aire visual, no compensa navbar */
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+}
+
+/* 4) Ajusta el branding para que la navbar no crezca demasiado en móviles */
+.navbar .navbar-brand img{
+  width: calc(var(--nav-h) - 16px);
+  height: calc(var(--nav-h) - 16px);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.6);
+  box-shadow: 0 0 12px rgba(51,179,255,.4);
+  margin-right: .5rem; /* evita el mx-4 enorme en pantallas estrechas */
+}
+.navbar .navbar-brand span{
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* 5) Ultra-estrecho: compacta un poco más todo */
+@media (max-width: 359.98px){
+  .neon-title{ font-size: 1.6rem; margin-bottom: 1rem; }
+  .sobre-hero .lead{ font-size: .95rem; line-height: 1.35; margin-bottom: 1.5rem; }
+  .sobre-hero .container{ padding-left: 12px !important; padding-right: 12px !important; }
+  .neon-card{ padding: .9rem; }
+}

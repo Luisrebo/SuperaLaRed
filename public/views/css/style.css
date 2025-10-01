@@ -21,7 +21,7 @@ body {
 .hero {
    min-height: 100vh;
   position: relative;
-  background-image: url("../img/hero7.jpg");
+  background-image: url("../../img/hero7.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -270,4 +270,11 @@ body::before {
   .hero p.lead {
     font-size: 1rem;
   }
+}
+.logo-circle {
+  width: 80px;          /* igual que el height del <img> */
+  height: 80px;
+  object-fit: cover;    /* recorta para que no se deforme */
+  border-radius: 50%;   /* hace el círculo */
+  border: 2px solid #fff; /* opcional, borde blanco bonito */
 }
