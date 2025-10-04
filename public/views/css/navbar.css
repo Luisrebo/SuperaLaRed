@@ -1,0 +1,42 @@
+/* Altura base de navbar y compatibilidad con páginas con navbar fija */
+:root { --nav-h: 80px; }
+@media (max-width: 991.98px){ :root { --nav-h: 72px; } }
+@media (max-width: 575.98px){ :root { --nav-h: 64px; } }
+
+
+/* Asegura que la navbar quede SIEMPRE por encima de overlays del contenido */
+.navbar.fixed-top { z-index: 1040; }
+
+
+/* Compensación del contenido: cada página decide si usa padding-top en su CSS */
+
+
+/* Branding */
+.brand-logo{
+width: 56px;
+height: 56px;
+object-fit: cover;
+border: 2px solid rgba(255,255,255,.6);
+box-shadow: 0 0 12px rgba(51,179,255,.4);
+}
+.navbar .navbar-brand span{
+font-size: clamp(1rem, 1.6vw, 1.15rem);
+line-height: 1.1;
+white-space: nowrap;
+}
+
+
+/* Ajustes menores */
+.navbar-nav .nav-link { display: inline-flex; align-items: center; gap: .35rem; }
+/* ===== Enlace activo según la página ===== */
+.navbar .nav-link.active-page {
+  color: #33b3ff !important;       /* azul brillante del tema */
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(51,179,255,0.4);
+  border-bottom: 2px solid #33b3ff; /* línea fina inferior */
+}
+
+.navbar .nav-link.active-page:hover {
+  color: #66c8ff !important;
+  border-bottom-color: #66c8ff;
+}
