@@ -107,3 +107,87 @@ body.accessible-mode .inc-subtitle {
   text-shadow: none;       /* evita brillos innecesarios */
     font-size: 2rem;
 }
+
+/* ========= Responsive refinado ========= */
+
+/* <= 1200px: aligera tamaños y espacios */
+@media (max-width: 1200px) {
+  .inc-title { font-size: clamp(2rem, 5.5vw, 3.2rem); }
+  .inc-subtitle { font-size: 1.1rem; }
+  .inc-principios, .inc-adaptaciones { padding: 4rem 0; }
+  .inc-block { gap: 1.5rem; }
+}
+
+/* <= 992px (tablets): columnas más cómodas y hero algo más bajo */
+@media (max-width: 992px) {
+  .inc-hero { height: 78vh; }
+  .inc-grid { gap: 1.5rem; }
+  .inc-card { padding: 1.5rem; }
+  .inc-ico { font-size: 1.6rem; }
+  .section-title { margin-bottom: 2rem; }
+  .inc-block { margin-bottom: 2.25rem; }
+  .inc-block img { width: 48%; }
+}
+
+/* <= 768px (móvil grande): pila vertical, tipografía ajustada */
+@media (max-width: 768px) {
+  /* Evita corte bajo navbar y scroll brusco */
+  .inc-hero {
+    height: auto;
+    min-height: 68vh;
+    margin-top: calc(var(--nav-h) * -0.6); /* menos “subida” en móvil */
+    padding: 4rem 0 2.5rem;
+  }
+
+  /* Quita background fixed en móvil (mejor rendimiento) */
+  .inc-hero__bg {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+                url("../../img/hero5.jpg") center/cover no-repeat;
+  }
+
+  .inc-title { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+  .inc-subtitle { font-size: 1.05rem; margin-bottom: 1.25rem; }
+  .inc-cta { padding: .6rem 1.2rem; border-radius: 999px; }
+
+  .inc-principios, .inc-adaptaciones { padding: 3rem 0; }
+
+  /* Bloques a columna: imagen arriba, texto abajo */
+  .inc-block,
+  .inc-block--reverse {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inc-block img {
+    width: 100%;
+    max-height: 42vh;
+    object-fit: cover;
+  }
+}
+
+/* <= 576px (móvil común): aún más legible y aireado */
+@media (max-width: 576px) {
+  .inc-title { font-size: clamp(1.8rem, 8vw, 2.3rem); }
+  .inc-subtitle { font-size: 1rem; }
+  .inc-card { padding: 1.25rem; }
+  .inc-ico { font-size: 1.5rem; }
+  .inc-cta-bottom { padding: 3rem 1rem; }
+
+  /* Rejilla de tarjetas: una por fila con buen gap */
+  .inc-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* <= 360px (muy pequeño): compacta aún más */
+@media (max-width: 360px) {
+  .inc-title { font-size: 1.6rem; }
+  .inc-subtitle { font-size: 0.95rem; }
+  .inc-card { padding: 1rem; }
+}
+
+/* ====== Ajustes cuando está activo el modo accesible en móvil ====== */
+@media (max-width: 768px) {
+  body.accessible-mode .inc-title { font-size: clamp(2rem, 8vw, 2.6rem); }
+  body.accessible-mode .inc-subtitle { font-size: 1.1rem; }
+}
