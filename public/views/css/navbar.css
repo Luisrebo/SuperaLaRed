@@ -40,3 +40,28 @@ white-space: nowrap;
   color: #66c8ff !important;
   border-bottom-color: #66c8ff;
 }
+/* Corrige la alineación de los íconos con texto */
+.navbar .nav-link i {
+  font-size: 1rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Evita que el número de teléfono se rompa en varias líneas */
+.navbar .nav-link[href^="tel:"] {
+  white-space: nowrap;
+}
+/* Evita cortes del botón y compacta el navbar en lg */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Oculta la etiqueta del botón, deja solo el icono */
+  #toggle-accessible .acc-label { display: none; }
+  #toggle-accessible { padding: .375rem .5rem; }
+
+  /* Reduce un poco el espacio entre items */
+  .navbar-nav .nav-item { margin-left: .35rem; margin-right: .35rem; }
+
+  /* Opcional: baja 5% el tamaño de links para ganar aire */
+  .navbar-nav .nav-link { font-size: .95rem; }
+}
+
+/* En móviles ya colapsa el menú, no hace falta tocar nada */
