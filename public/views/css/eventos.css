@@ -85,11 +85,10 @@ body.accessible-mode .event-card{
 }
 /* Contenedor fijo para evitar recortes y saltos */
 .event-card__media{
-  height: 220px;               /* altura uniforme */
-  background: #0b0f14;         /* “letterbox” elegante */
-  display: grid;
-  place-items: center;         /* centra la imagen */
+  aspect-ratio: 16 / 9;      /* cambia a 4/3 o 3/2 si te encaja mejor */
+  width: 100%;
   overflow: hidden;
+  background: transparent;    /* evita “barras” oscuras */
 }
 @media (max-width: 576px){
   .event-card__media{ height: 190px; }
@@ -97,11 +96,9 @@ body.accessible-mode .event-card{
 
 /* Imagen SIN recortes (contain) */
 .event-card__img{
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;         /* <- clave para NO recortar */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* sin “barras” en pantallas pequeñas */
   display: block;
 }
 body {
@@ -110,4 +107,10 @@ body {
 
 .ev-hero {
   padding-top: 12rem;   /* sube o baja según la altura de tu navbar */
+}
+@media (min-width: 992px){
+  .event-card__img{
+    object-fit: contain;      /* muestra la foto entera en desktop */
+    background: transparent;  /* sin “barras” visibles */
+  }
 }
