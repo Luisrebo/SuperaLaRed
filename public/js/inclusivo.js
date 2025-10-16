@@ -18,19 +18,22 @@ function initAccessibilityButton() {
   const nav = document.querySelector('.navbar .navbar-nav');
   if (!nav) return;
 
-  const btn = document.createElement('button');
-  btn.id = 'toggle-accessible';
-  btn.className = 'btn btn-outline-light btn-sm ms-2';
-  btn.innerHTML = '<i class="bi bi-eye"></i> Modo Accesible';
-
   const li = document.createElement('li');
   li.className = 'nav-item';
-  li.appendChild(btn);
+
+  // icono + etiqueta responsive (la etiqueta se oculta en lg)
+  li.innerHTML = `
+    <button id="toggle-accessible" class="btn btn-outline-light btn-sm ms-2">
+      <i class="bi bi-eye"></i>
+      <span class="acc-label ms-1">Modo Accesible</span>
+    </button>
+  `;
   nav.appendChild(li);
 
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('accessible-mode');
-  });
+  document.getElementById('toggle-accessible')
+    .addEventListener('click', () => {
+      document.body.classList.toggle('accessible-mode');
+    });
 }
 
 // === Resaltar enlace activo ===

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eventos – SuperaLaRed</title>
+
+  <link rel="icon" href="public/img/LOGO SUPERALARED.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="public/views/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="public/views/css/navbar.css" />
+  <link rel="stylesheet" href="public/views/css/eventos.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar dinámica -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Hero compacto -->
+  <header class="ev-hero">
+    <div class="container text-center">
+      <h1 class="ev-title">Sorteos y Torneos</h1>
+      <p class="ev-subtitle">
+        Publicaciones sincronizadas desde nuestra plataforma.
+      </p>
+    </div>
+  </header>
+
+  <!-- Listado de eventos -->
+  <main id="eventos" class="container my-5">
+    <div id="eventos-grid" class="row g-3"></div>
+
+    <div id="eventos-empty" class="alert alert-info d-none mt-3" role="status" aria-live="polite">
+      No hay eventos publicados por ahora.
+    </div>
+
+    <div id="eventos-error" class="alert alert-danger d-none mt-3" role="alert" aria-live="assertive">
+      No se pudieron cargar los eventos. Inténtalo más tarde.
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="public/js/navbar.js"></script>
+  <script src="public/js/eventos.js"></script>
+</body>
+</html>
