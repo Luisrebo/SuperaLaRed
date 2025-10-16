@@ -4,7 +4,7 @@
   padding: 4.5rem 0 2.5rem;
   background:
     linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25)),
-    url("../../img/hero6.jpg") center/cover no-repeat fixed;
+    url("../../img/hero5.jpg") center/cover no-repeat fixed;
   color: #eaf6ff;
   text-align: center;
 }
@@ -103,4 +103,11 @@ body.accessible-mode .event-card{
   height: auto;
   object-fit: contain;         /* <- clave para NO recortar */
   display: block;
+}
+body {
+  scroll-padding-top: 80px; /* para que los anchors funcionen bien también */
+}
+
+.ev-hero {
+  padding-top: 12rem;   /* sube o baja según la altura de tu navbar */
 }
