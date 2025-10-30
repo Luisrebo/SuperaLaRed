@@ -1,67 +1,112 @@
-/* Altura base de navbar y compatibilidad con páginas con navbar fija */
+/* Altura base de navbar (si la usas para compensar contenido en otras páginas) */
 :root { --nav-h: 80px; }
 @media (max-width: 991.98px){ :root { --nav-h: 72px; } }
 @media (max-width: 575.98px){ :root { --nav-h: 64px; } }
 
-
-/* Asegura que la navbar quede SIEMPRE por encima de overlays del contenido */
+/* Siempre por encima de overlays */
 .navbar.fixed-top { z-index: 1040; }
-
-
-/* Compensación del contenido: cada página decide si usa padding-top en su CSS */
-
 
 /* Branding */
 .brand-logo{
-width: 56px;
-height: 56px;
-object-fit: cover;
-border: 2px solid rgba(255,255,255,.6);
-box-shadow: 0 0 12px rgba(51,179,255,.4);
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.6);
+  box-shadow: 0 0 12px rgba(51,179,255,.4);
 }
 .navbar .navbar-brand span{
-font-size: clamp(1rem, 1.6vw, 1.15rem);
-line-height: 1.1;
-white-space: nowrap;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
-
-/* Ajustes menores */
-.navbar-nav .nav-link { display: inline-flex; align-items: center; gap: .35rem; }
-/* ===== Enlace activo según la página ===== */
-.navbar .nav-link.active-page {
-  color: #33b3ff !important;       /* azul brillante del tema */
-  font-weight: 700;
-  text-shadow: 0 0 8px rgba(51,179,255,0.4);
-  border-bottom: 2px solid #33b3ff; /* línea fina inferior */
+/* ===== ENLACES DEL NAV ===== */
+.navbar-nav .nav-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
+  word-break: keep-all;
+  line-height: 1;
+  padding-inline: .25rem;
+  font-size: clamp(.84rem, 1.1vw, 1rem);
 }
 
-.navbar .nav-link.active-page:hover {
-  color: #66c8ff !important;
-  border-bottom-color: #66c8ff;
-}
-/* Corrige la alineación de los íconos con texto */
+/* Iconos alineados con el texto */
 .navbar .nav-link i {
   font-size: 1rem;
   line-height: 1;
   vertical-align: middle;
 }
 
-/* Evita que el número de teléfono se rompa en varias líneas */
-.navbar .nav-link[href^="tel:"] {
-  white-space: nowrap;
+/* Enlaces activos */
+.navbar .nav-link.active-page {
+  color: #33b3ff !important;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(51,179,255,0.4);
+  border-bottom: 2px solid #33b3ff;
 }
-/* Evita cortes del botón y compacta el navbar en lg */
+.navbar .nav-link.active-page:hover {
+  color: #66c8ff !important;
+  border-bottom-color: #66c8ff;
+}
+
+/* Teléfono: no se parte (reforzado) */
+.navbar .nav-link[href^="tel:"] { white-space: nowrap; }
+
+/* Ajuste fino en escritorio estrecho (lg) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Oculta la etiqueta del botón, deja solo el icono */
-  #toggle-accessible .acc-label { display: none; }
-  #toggle-accessible { padding: .375rem .5rem; }
-
-  /* Reduce un poco el espacio entre items */
   .navbar-nav .nav-item { margin-left: .35rem; margin-right: .35rem; }
-
-  /* Opcional: baja 5% el tamaño de links para ganar aire */
-  .navbar-nav .nav-link { font-size: .95rem; }
+  .navbar-nav .nav-link { font-size: clamp(.8rem, 1vw, .95rem); }
 }
 
-/* En móviles ya colapsa el menú, no hace falta tocar nada */
+/* ===== Botón de accesibilidad ===== */
+#toggle-accessible{
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: clamp(.84rem, 1vw, .95rem);
+}
+.nav-item-accessible {
+  margin-left: .35rem;
+  margin-right: .35rem;
+}
+
+/* En móvil: respiración vertical dentro del menú colapsado */
+@media (max-width: 991.98px){
+  .nav-item-accessible { margin: .25rem 0; }
+}
+
+/* ======= FIX ESPECÍFICO 991–1065px =======
+   Compacta todo para que NO desborde por la izquierda ni se “meta” bajo el logo
+*/
+@media (min-width: 992px) and (max-width: 1065px){
+  /* Reduce un pelín el branding */
+  .navbar .navbar-brand span{
+    font-size: clamp(.95rem, 1.15vw, 1.05rem);
+  }
+
+  /* Menos aire entre items */
+  .navbar-nav .nav-item{
+    margin-left: .2rem;
+    margin-right: .2rem;
+  }
+
+  /* Enlaces más compactos */
+  .navbar-nav .nav-link{
+    gap: .25rem;
+    padding-inline: .15rem;
+    font-size: clamp(.72rem, .85vw, .9rem);
+  }
+
+  /* Iconos un pelín más pequeños */
+  .navbar .nav-link i{
+    font-size: .95rem;
+  }
+
+  /* Botón accesible: acolchado más fino */
+  #toggle-accessible{
+    padding: .25rem .5rem;
+  }
+}

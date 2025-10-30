@@ -65,7 +65,6 @@ body { margin: 0; }
   transform: translateY(0);
 }
 
-
 /* ======== MODO ACCESIBLE ======== */
 body.accessible-mode {
   background: #f2f6fa !important;
@@ -75,7 +74,7 @@ body.accessible-mode {
 }
 
 body.accessible-mode h1{
-    color: #fffb00 !important
+  color: #fffb00 !important
 }
 
 body.accessible-mode h2,
@@ -96,16 +95,17 @@ body.accessible-mode .inc-cta {
   color: #fff !important;
   border: none !important;
 }
+
 /* ===== Hero en modo accesible ===== */
 body.accessible-mode .inc-title {
-  color: #003366;          /* azul oscuro, alto contraste */
-  text-shadow: none;       /* elimina sombras para mayor legibilidad */
+  color: #003366;
+  text-shadow: none;
 }
 
 body.accessible-mode .inc-subtitle {
-  color: #fff;          /* texto gris muy oscuro */
-  text-shadow: none;       /* evita brillos innecesarios */
-    font-size: 2rem;
+  color: #fff;
+  text-shadow: none;
+  font-size: 2rem;
 }
 
 /* ========= Responsive refinado ========= */
@@ -129,13 +129,14 @@ body.accessible-mode .inc-subtitle {
   .inc-block img { width: 48%; }
 }
 
-/* <= 768px (móvil grande): pila vertical, tipografía ajustada */
+/* <= 768px (móvil grande): pila vertical, tipografía ajustada
+   🔁 CAMBIO CLAVE: Mostrar TÍTULO/TEXTO arriba y IMAGEN debajo para evitar confusión */
 @media (max-width: 768px) {
-  /* Evita corte bajo navbar y scroll brusco */
+  /* Hero */
   .inc-hero {
     height: auto;
     min-height: 68vh;
-    margin-top: calc(var(--nav-h) * -0.6); /* menos “subida” en móvil */
+    margin-top: calc(var(--nav-h) * -0.6);
     padding: 4rem 0 2.5rem;
   }
 
@@ -151,16 +152,30 @@ body.accessible-mode .inc-subtitle {
 
   .inc-principios, .inc-adaptaciones { padding: 3rem 0; }
 
-  /* Bloques a columna: imagen arriba, texto abajo */
+  /* Bloques a columna y reordenados: TEXTO primero, IMAGEN después */
   .inc-block,
   .inc-block--reverse {
-    flex-direction: column;
+    flex-direction: column;      /* ya lo tenías */
     align-items: stretch;
   }
+
+  /* Reordenado: el contenedor de texto (div) arriba, imagen abajo */
+  .inc-block > div { order: 1; }
+  .inc-block > img { order: 2; }
+
   .inc-block img {
     width: 100%;
     max-height: 42vh;
     object-fit: cover;
+    margin-top: .75rem;          /* un poco de aire tras el texto */
+  }
+
+  /* Ajustes de tipografía dentro de los bloques para legibilidad */
+  .inc-block h3 { 
+    margin-bottom: .5rem;
+  }
+  .inc-block p {
+    margin-bottom: 0;            /* el aire lo da el margen-top de la imagen */
   }
 }
 
@@ -172,7 +187,6 @@ body.accessible-mode .inc-subtitle {
   .inc-ico { font-size: 1.5rem; }
   .inc-cta-bottom { padding: 3rem 1rem; }
 
-  /* Rejilla de tarjetas: una por fila con buen gap */
   .inc-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -190,4 +204,20 @@ body.accessible-mode .inc-subtitle {
 @media (max-width: 768px) {
   body.accessible-mode .inc-title { font-size: clamp(2rem, 8vw, 2.6rem); }
   body.accessible-mode .inc-subtitle { font-size: 1.1rem; }
+}
+/* --- Ajuste de proximidad título/subtítulo en la sección Adaptaciones --- */
+.inc-adaptaciones .section-title{
+  margin-bottom: .5rem;            /* antes 2–3rem */
+}
+
+.inc-adaptaciones .container > p{
+  margin-top: 0;                   /* pegado al título */
+  margin-bottom: 1.75rem;          /* aire con los bloques siguientes */
+  opacity: .95;                    /* sutilmente más legible */
+}
+
+/* Afinado en móvil */
+@media (max-width: 768px){
+  .inc-adaptaciones .section-title{ margin-bottom: .4rem; }
+  .inc-adaptaciones .container > p{ margin-bottom: 1.25rem; }
 }

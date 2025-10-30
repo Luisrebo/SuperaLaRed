@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const placeholder = document.getElementById('navbar-placeholder');
   if (!placeholder) return;
 
-  fetch('navbar.html', { cache: 'no-cache' })   // <— IMPORTANTE: sin barra inicial
+  fetch('navbar.html', { cache: 'no-cache' })
     .then(r => r.ok ? r.text() : Promise.reject(r.status))
     .then(html => {
       placeholder.innerHTML = html;
-      initAccessibilityButton();
-      highlightActiveLink();                    // <— resalta después de inyectar
+      initAccessibilityButton();        // ← inserta el botón
+      highlightActiveLink();            // ← resalta después de inyectar
     })
     .catch(err => console.error('Error cargando navbar:', err));
 });
@@ -19,13 +19,23 @@ function initAccessibilityButton() {
   if (!nav) return;
 
   const li = document.createElement('li');
-  li.className = 'nav-item';
+  li.className = 'nav-item nav-item-accessible';
 
-  // icono + etiqueta responsive (la etiqueta se oculta en lg)
+  /* En móvil:
+     - w-100: ocupa el ancho del menú colapsado
+     - ms-0: elimina margen izquierdo
+     En desktop (>= lg):
+     - w-lg-auto: ancho natural
+     - ms-lg-2: margen izquierdo suave
+     Etiqueta:
+     - oculta en lg con d-none d-xl-inline para ahorrar espacio,
+       reaparece en pantallas grandes (>= xl) */
   li.innerHTML = `
-    <button id="toggle-accessible" class="btn btn-outline-light btn-sm ms-2">
+    <button id="toggle-accessible"
+            class="btn btn-outline-light btn-sm d-inline-flex align-items-center
+                   w-100 w-lg-auto ms-0 ms-lg-2">
       <i class="bi bi-eye"></i>
-      <span class="acc-label ms-1">Modo Accesible</span>
+      <span class="acc-label ms-1 d-none d-xl-inline">Modo Accesible</span>
     </button>
   `;
   nav.appendChild(li);
@@ -39,7 +49,6 @@ function initAccessibilityButton() {
 // === Resaltar enlace activo ===
 function highlightActiveLink() {
   const raw = window.location.pathname.split('/').pop();
-  // Soporta visitar "/" (sin index.html)
   const current = raw === '' ? 'index.html' : raw;
 
   const links = document.querySelectorAll('.navbar a.nav-link');
@@ -47,13 +56,12 @@ function highlightActiveLink() {
 
   links.forEach(link => {
     const href = link.getAttribute('href') || '';
-    // Ignorar externos / tel / whatsapp
+    // Ignorar externos / tel / whatsapp / mailto
     if (/^(https?:|tel:|mailto:|wa\.me|https:\/\/wa\.me)/i.test(href)) return;
 
     const linkFile = href.split('/').pop().split('#')[0] || 'index.html';
     if (linkFile === current) matched = link;
 
-    // caso especial: estás en index.html y el link es index.html#algo
     if (!matched && current === 'index.html' && href.startsWith('index.html#')) {
       matched = link;
     }
